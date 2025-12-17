@@ -1,36 +1,38 @@
-StudentServiceImpl.java
+package com.example.demo.service.impl;
 
-package com.example.demo.service.impl.StudentServiceImpl;
+import java.util.List;
+import java.util.Optional;
 
-import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.entity.Student;
+
+import com.example.demo.entity.StudentEntity;
+import com.example.demo.repository.StudentRepository;
+import com.example.demo.service.StudentService;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final Map<Long, Student> store = new HashMap<>();
-    private long counter = 1;
+    @Autowired
+    private StudentRepository repo;
 
     @Override
-    public Student insertStudent(Student st) {
-        st.setId(counter++);
-        store.put(st.getId(), st);
-        return st;
+    public StudentEntity insertStudent(StudentEntity st) {
+        return repo.save(st);
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        return new ArrayList<>(store.values());
+    public List<StudentEntity> getAllStudent() {
+        return repo.findAll();
     }
 
     @Override
-    public Optional<Student> getOneStudent(Long id) {
-        return Optional.ofNullable(store.get(id));
+    public Optional<StudentEntity> getOneStudent(int id) {
+        return repo.findById(id);
     }
 
     @Override
-    public void deleteStudent(Long id) {
-        store.remove(id);
+    public void deleteStudent(int id) {
+        repo.deleteById(id);
     }
 }

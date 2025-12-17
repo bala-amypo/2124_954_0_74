@@ -1,56 +1,49 @@
 package com.example.demo.controller;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
-import org.springframework.web.beans.factory.annotation.Autowired;
-import org.springframework.web.beans.factory.annotation.DeletMapping;
-import org.springframework.web.beans.factory.annotation.GetMapping;
-import org.springframework.web.beans.factory.annotation.PathVariable;
-import org.springframework.web.beans.factory.annotation.PostMapping;
-import org.springframework.web.beans.factory.annotation.PutMapping;
-import org.springframework.web.beans.factory.annotation.RequestBody;
-import org.springframework.web.beans.factory.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.StudentEntity;
 import com.example.demo.service.StudentService;
-import com.example.demo.service.StudSer;
 
 @RestController
-public class StudentController{
+@RequestMapping("/student")
+public class StudentController {
+
     @Autowired
-    StudSer ser;
-    @Autowired
-    StudentService service;
+    private StudentService service;
+
     @PostMapping("/add")
-    public StudentEntity post(@RequestBody StudentEntity st){
-        return ser.saveData(st);
+    public StudentEntity add(@RequestBody StudentEntity st) {
+        return service.insertStudent(st);
     }
+
     @GetMapping("/getAll")
-    public List<StudentEntity>getAll(){
+    public List<StudentEntity> getAll() {
         return service.getAllStudent();
-    } 
+    }
+
     @GetMapping("/get/{id}")
-    public Optinal<StudentEntity>get(@PathVariable int id){
+    public Optional<StudentEntity> get(@PathVariable int id) {
         return service.getOneStudent(id);
     }
+
     @PutMapping("/update/{id}")
-    public String update(@PathVariable int id,@RequestBody StudentEntity newStudent){
-        Optinal<StudentEntity> student=service.getOneStudent(id);
-        if(student.isPresent()){
-            newStudent.setId(id);
-            service.insertStudent(newStudent);
-            return "Update Successfully";
+    public String update(@PathVariable int id, @RequestBody StudentEntity st) {
+        if (service.getOneStudent(id).isPresent()) {
+            st.setId(id);
+            service.insertStudent(st);
+            return "Updated Successfully";
         }
-        return "Id not found";
+        return "ID not found";
     }
-    @DeletMapping("/del/{id}")
-    public String deleteStudent(@PathVariable int id){
-        Optinal<StudentEntity> student=service.getOneStudent(id);
-        if(student.isPresent()){
-            newStudent.setId(id);
-            service.deleteStudent(newStudent);
-            return "Deleted Successfully";
-        }
-        return "Id not found";
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
+        service.deleteStudent(id);
+        return "Deleted Successfully";
     }
 }

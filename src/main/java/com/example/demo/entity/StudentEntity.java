@@ -1,32 +1,45 @@
-import com.example.demo.entity;
+package com.example.demo.entity;
 
-public class StudentEntity{
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class StudentEntity {
+
+    @Id
     private int id;
     private String name;
     private String email;
-    public void setId(int id){
-        this.id=id;
+
+    public StudentEntity() {}
+
+    public StudentEntity(int id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
-     public void setName(String name){
-        this.name=name;
+
+    public int getId() {
+        return id;
     }
-     public void setEmail(String email){
-        this.email=email;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    public int getId(){
-        retrun id;
+
+    public String getName() {
+        return name;
     }
-    public String getName(){
-        retrun name;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
-    public StudentEntity(int id,String name,String email){
-        this.id=id;
-        this.name=name;
-        this.email=email;
-    }
-    public StudentEntity(){
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
