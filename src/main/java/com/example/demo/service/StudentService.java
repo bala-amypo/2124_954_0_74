@@ -3,7 +3,7 @@ package com.example.demo.sevice;
 import.java.util.List;
 import.java.util.Optinal;
 
-import com.example.demo.StudentEntity;
+import com.example.demo.entity.StudentEntity;
 
 public interface StudentService{
     StudentEntity insertStudent(StudentEntity st);
