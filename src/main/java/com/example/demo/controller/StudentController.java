@@ -25,6 +25,19 @@ public class StudentController{
     public StudentEntity post(@RequestBody StudentEntity st){
         return ser.saveData(st);
     }
-    @GetMapping
-    public 
+    @GetMapping("/getAll")
+    public List<StudentEntity>getAll(){
+        return service.getAllStudent();
+    } 
+    @GetMapping("/get/{id}")
+    public Optinal<StudentEntity>get(@PathVariable int id){
+        return service.getOneStudent(id);
+    }
+    @PutMapping("/update/{id}")
+    public String update(@PathVariable int id,@RequestBody StudentEntity newStudent){
+        Optinal<StudentEntity> student=service.getOneStudent(id);
+        if(student.isPresent()){
+            
+        }
+    }
 }
