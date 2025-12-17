@@ -12,5 +12,19 @@ import org.springframework.web.beans.factory.annotation.RequestBody;
 import org.springframework.web.beans.factory.annotation.RestController;
 
 import com.example.demo.entity.StudentEntity;
-import com.example.demo.service.St
-import com.example.demo.entity.StudentEntity;
+import com.example.demo.service.StudentService;
+import com.example.demo.service.StudSer;
+
+@RestController
+public class StudentController{
+    @Autowired
+    StudSer ser;
+    @Autowired
+    StudentService service;
+    @PostMapping("/add")
+    public StudentEntity post(@RequestBody StudentEntity st){
+        return ser.saveData(st);
+    }
+    @GetMapping
+    public 
+}
