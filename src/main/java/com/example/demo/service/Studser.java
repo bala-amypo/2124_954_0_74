@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import java.util.*;
-import org.springframeworks.
+import org.springframework.sterotype.Service;
 import com.example.demo.service.StudentService;
+
+@Service
 public class StudSer implementation StudentService{
        Map<Integer,StudentEntity> details=new HashMap<>();
        public StudentEntity saveData(StudentEntity st){
