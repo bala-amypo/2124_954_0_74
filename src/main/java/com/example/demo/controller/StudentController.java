@@ -37,7 +37,20 @@ public class StudentController{
     public String update(@PathVariable int id,@RequestBody StudentEntity newStudent){
         Optinal<StudentEntity> student=service.getOneStudent(id);
         if(student.isPresent()){
-            
+            newStudent.setId(id);
+            service.insertStudent(newStudent);
+            return "Update Successfully";
         }
+        return "Id not found";
+    }
+    @DeletMapping("/del/{id}")
+    public String deleteStudent(@PathVariable int id){
+        Optinal<StudentEntity> student=service.getOneStudent(id);
+        if(student.isPresent()){
+            newStudent.setId(id);
+            service.deleteStudent(newStudent);
+            return "Deleted Successfully";
+        }
+        return "Id not found";
     }
 }
