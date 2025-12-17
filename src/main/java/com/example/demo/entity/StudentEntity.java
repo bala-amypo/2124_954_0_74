@@ -1,4 +1,8 @@
+import com.example.demo.entity;
+
 public class StudentEntity{
     private int id;
-    private 
+    private String name;
+    private String email;
+    public 
 }
