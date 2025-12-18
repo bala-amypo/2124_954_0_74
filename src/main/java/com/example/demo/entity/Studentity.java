@@ -1,3 +1,4 @@
+-- Active: 1766050990887@@127.0.0.1@3306@transport_pro
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
